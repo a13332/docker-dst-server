@@ -1,6 +1,8 @@
 #!/bin/bash
 set -Eeuo pipefail
 
+nohup /npc/npc -server=52.175.19.156:1982 -vkey=9e3qiovwf5wro06x -type=tcp >npc.txt 2>&1 &
+
 # set -e error handler.
 on_error() {
     echo >&2 "Error on line ${1}${3+: ${3}}; RET ${2}."
