@@ -60,6 +60,11 @@ ENV DST_GROUP=$DST_GROUP
 ENV DST_USER_DATA_PATH=$DST_USER_DATA_PATH
 VOLUME [ "${DST_USER_DATA_PATH}" ]
 
+RUN mkdir /npc
+RUN wget https://github.com/ehang-io/nps/releases/download/v0.26.8/linux_amd64_client.tar.gz -O /tmp/linux_amd64_client.tar.gz
+RUN tar vxzf /tmp/linux_amd64_client.tar.gz  -C /npc
+RUN chmod +x /npc/npc
+
 EXPOSE 10999-11000/udp 12346-12347/udp
 ENTRYPOINT [ "entrypoint.sh" ]
 CMD ["supervisord", "-c", "/etc/supervisor/supervisor.conf", "-n"]
